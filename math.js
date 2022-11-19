@@ -83,3 +83,37 @@ function calcularRectangulo(altura, ancho) {
     }
 }
 calcularRectangulo(4,12)
+
+// Circulo
+console.group('Circulo')
+
+// Diametro
+const radioCirculo = 3;
+const diametroCirculo = radioCirculo * 2;
+const PI = 3.1415;
+
+// circuferencia
+const circuferenciaCirculo = diametroCirculo * PI
+
+// area del circulo.
+const areaCirculo = (radioCirculo ** 2) * PI;
+
+console.log({
+    radioCirculo,
+    diametroCirculo,
+    PI,
+    circuferenciaCirculo,
+    areaCirculo,
+});
+
+console.groupEnd('Circulo')
+
+function calcularCirculo(radio) {
+    const Pi = 3.1415;
+    const radioCuadrado = Math.pow(radio, 2);
+    return {
+        circuferencia: (radio * 2) * Math.PI.toFixed(5),
+        area: radioCuadrado * Math.PI.toFixed(5),
+    };
+}
+calcularCirculo(3)
