@@ -131,10 +131,11 @@ calcularTrianguloAltura(6,4)
 // Triángulo escaleno.
 function calcularTrianguloAlturaEscaleno(ladoA, ladoB, ladoC) {
     if (ladoA == ladoB || ladoA == ladoC || ladoB == ladoC) {
-        console.warn('Este no es un Triángulo Escaleno');
+        return false;
     } else {
-        const semiperimetro = (ladoA + ladoB + ladoC) / 2;
-        return Altura = ((2 / ladoA)*Math.sqrt(semiperimetro*(semiperimetro - ladoA)*(semiperimetro - ladoB)*(semiperimetro - ladoC))).toFixed(5);
+        const S = (ladoA + ladoB + ladoC) / 2;
+        const H = (2 / ladoA)*Math.sqrt(S *(S - ladoA)*(S - ladoB)*(S - ladoC));
+        return 'La altura del triángulo escaleno es ' + Math.floor(H);
     };
 }
-calcularTrianguloAlturaEscaleno(6,8,9)
+calcularTrianguloAlturaEscaleno(16,8,10)
