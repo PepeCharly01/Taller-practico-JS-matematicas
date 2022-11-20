@@ -117,3 +117,24 @@ function calcularCirculo(radio) {
     };
 }
 calcularCirculo(3)
+
+// Triángulo Isosceles
+function calcularTrianguloAltura(lado01, base01) {
+    if (lado01 == base01) {
+        console.warn('Este no es un triángulo isosceles');
+    } else {
+        return altura = Math.sqrt((Math.pow(lado01, 2)) - (Math.pow(base01, 2)) / 4).toFixed(5);
+    };
+}
+calcularTrianguloAltura(6,4)
+
+// Triángulo escaleno.
+function calcularTrianguloAlturaEscaleno(ladoA, ladoB, ladoC) {
+    if (ladoA == ladoB || ladoA == ladoC || ladoB == ladoC) {
+        console.warn('Este no es un Triángulo Escaleno');
+    } else {
+        const semiperimetro = (ladoA + ladoB + ladoC) / 2;
+        return Altura = ((2 / ladoA)*Math.sqrt(semiperimetro*(semiperimetro - ladoA)*(semiperimetro - ladoB)*(semiperimetro - ladoC))).toFixed(5);
+    };
+}
+calcularTrianguloAlturaEscaleno(6,8,9)
