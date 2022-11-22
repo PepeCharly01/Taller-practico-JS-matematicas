@@ -164,10 +164,10 @@ const price = Number(inputPrecio.value);
 const descuento = inputCupon.value;
 
 const discounts = {
-    platzivacation: 10,
-    mothersday: 15,
-    independenceday: 20,
-    christmas: 50,
+    'platzivacation': 10,
+    'mothersday': 15,
+    'independenceday': 20,
+    'christmas': 50,
   };
 
   function calcularPrecioConDescuento() {
@@ -182,3 +182,90 @@ const discounts = {
     return pResult.innerText = 'El precio final con descuento es: $' + total;
   }
 ```
+## Esta es la forma correcta de resolver el reto con objetos.
+```js
+const cuponesObj = {
+    'Descuento_20%': 20,
+    'Descuento_30%': 30,
+    'Descuento_50%': 50,
+}
+
+function calcularPrecioConDescuento() {
+    const precio = Number(inputPrecio.value);
+    const cupon = inputCupon.value;
+
+    if (!precio || !cupon) {
+        pResult.innerText = 'ERROR! por favor llene corectamente el formulario';
+        return;
+    }
+
+    let descuento;
+
+    if (cuponesObj[cupon]) {
+        descuento = cuponesObj[cupon];
+    } else {
+        pResult.innerText = 'ERROR! el cupón no es valido';
+        return;
+    }
+
+    const precioFinal = (precio * (100 - descuento)) / 100;
+    pResult.innerText = 'El precio final con descuento es: $' + precioFinal;
+}
+```
+### esta es la forma de utilizar Array con el metodo de filter. (Nos devuelve un Array con todos los objetos)
+```js
+cuponesLista = [];
+cuponesLista.push({
+    nombre: 'Descuento_20%',
+    descuento: 20,
+});
+cuponesLista.push({
+    nombre: 'Descuento_30%',
+    descuento: 30,
+});
+cuponesLista.push({
+    nombre: 'Descuento_50%',
+    descuento: 50,
+});
+
+function calcularPrecioConDescuento() {
+    const precio = Number(inputPrecio.value);
+    const cupon = inputCupon.value;
+
+    if (!precio || !cupon) {
+        pResult.innerText = 'ERROR! por favor llene corectamente el formulario';
+        return;
+    }
+
+    let descuento;
+
+    function isCuponInArray(elementoCupon) {
+       return elementoCupon.nombre == cupon;
+    }
+
+    const cuponInArray = cuponesLista.filter(isCuponInArray);
+
+    if (cuponInArray.length > 0) {
+        descuento = cuponInArray[0].descuento;
+    } else {
+        pResult.innerText = 'ERROR! el cupón no es valido';
+        return;
+    }
+
+    const precioFinal = (precio * (100 - descuento)) / 100;
+    pResult.innerText = 'El precio final con descuento es: $' + precioFinal;
+}
+```
+### con el metodo de find este de te vuelve solo un objeto.
+
+```js
+const cuponInArray = cuponesLista.find(isCuponInArray);
+
+    if (cuponInArray) {
+        descuento = cuponInArray.descuento;
+    } else {
+        pResult.innerText = 'ERROR! el cupón no es valido';
+        return;
+    }
+    ```
+    De esta forma te devuelve la primera coincidencia el primer objeto que coincida.

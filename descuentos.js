@@ -5,24 +5,44 @@ const pResult = document.querySelector('#result');
 
 btn.addEventListener('click', calcularPrecioConDescuento);
 
-const price = Number(inputPrecio.value);
-const descuento = inputCupon.value;
+cuponesLista = [];
+cuponesLista.push({
+    nombre: 'Descuento_20%',
+    descuento: 20,
+});
+cuponesLista.push({
+    nombre: 'Descuento_30%',
+    descuento: 30,
+});
+cuponesLista.push({
+    nombre: 'Descuento_50%',
+    descuento: 50,
+});
 
-const discounts = {
-    platzivacation: 10,
-    mothersday: 15,
-    independenceday: 20,
-    christmas: 50,
-  };
+function calcularPrecioConDescuento() {
+    const precio = Number(inputPrecio.value);
+    const cupon = inputCupon.value;
 
-  function calcularPrecioConDescuento() {
-    let total;
-    let discountOnNumber =  descuento[discounts.value];
-  
-    if (!discountOnNumber) 
-    return pResult.innerText = 'ERROR';
-  
-    total = (price * (100 - discountOnNumber)) / 100;
-  
-    return pResult.innerText = 'El precio final con descuento es: $' + total;
-  }
+    if (!precio || !cupon) {
+        pResult.innerText = 'ERROR! por favor llene corectamente el formulario';
+        return;
+    }
+
+    let descuento;
+
+    function isCuponInArray(elementoCupon) {
+       return elementoCupon.nombre == cupon;
+    }
+
+    const cuponInArray = cuponesLista.find(isCuponInArray);
+
+    if (cuponInArray) {
+        descuento = cuponInArray.descuento;
+    } else {
+        pResult.innerText = 'ERROR! el cupón no es valido';
+        return;
+    }
+
+    const precioFinal = (precio * (100 - descuento)) / 100;
+    pResult.innerText = 'El precio final con descuento es: $' + precioFinal;
+}
