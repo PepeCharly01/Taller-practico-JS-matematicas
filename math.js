@@ -139,3 +139,19 @@ function calcularTrianguloAlturaEscaleno(ladoA, ladoB, ladoC) {
     };
 }
 calcularTrianguloAlturaEscaleno(16,8,10)
+
+const parrafo = document.querySelector('#parrafo');
+const precio = document.querySelector('#inputPrecio');
+const descuento = document.querySelector('#inputDescuento');
+const calcular = document.querySelector('#calcular');
+const instruciones = document.querySelector('p');
+
+calcular.addEventListener('click', precioConDescuento);
+
+
+function precioConDescuento() {
+    const precioFinal = (Number(precio.value)) * (100 - Number(descuento.value)) / 100;
+    parrafo.innerText = "El precio final es de: $" + precioFinal;
+}
+
+instruciones.innerText = "Calculadora de precios con descuento";
