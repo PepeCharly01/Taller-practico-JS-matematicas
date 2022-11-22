@@ -101,3 +101,84 @@ function calcularTercerDescuento() {
     pResult.innerText = 'Este es tu precio final: $' + precioDescuento;
 }
 ```
+### asi lo resolvio el profesor al reto:
+haciendo condicionales y con los cupones.
+```js
+const btn = document.querySelector('#calcular');
+const inputPrecio = document.querySelector('#precio');
+const inputCupon = document.querySelector('#cupon');
+const pResult = document.querySelector('#result');
+
+btn.addEventListener('click', calcularPrecioConDescuento);
+
+function calcularPrecioConDescuento() {
+    const precio = Number(inputPrecio.value);
+    const cupon = inputCupon.value;
+
+    if (!precio || !cupon) {
+        pResult.innerText = 'ERROR! por favor llene corectamente el formulario';
+        return;
+    }
+
+    let descuento;
+
+    if (cupon == 'Descuento_del_20%') {
+        descuento = 20;
+    } else if (cupon == 'Descuento_del_30%') {
+        descuento = 30;
+    } else {
+        pResult.innerText = 'ERROR! el cupón no es valido';
+        return;
+    }
+
+    const precioFinal = (precio * (100 - descuento)) / 100;
+    pResult.innerText = 'El precio final con descuento es: $' + precioFinal;
+}
+```
+###en esta otra forma usando un switch:
+```js
+switch (cupon) {
+        case 'Descuento_del_20%':
+        descuento = 20;
+        break;
+
+        case 'Descuento_del_30%':
+        descuento = 30;
+        break;
+
+        default:
+            pResult.innerText = 'ERROR! el cupón no es válido';
+        return;
+    }
+```
+### intento de hacerlo con objetos pero no pude hacerlo funcionar.
+```js
+const btn = document.querySelector('#calcular');
+const inputPrecio = document.querySelector('#precio');
+const inputCupon = document.querySelector('#cupon');
+const pResult = document.querySelector('#result');
+
+btn.addEventListener('click', calcularPrecioConDescuento);
+
+const price = Number(inputPrecio.value);
+const descuento = inputCupon.value;
+
+const discounts = {
+    platzivacation: 10,
+    mothersday: 15,
+    independenceday: 20,
+    christmas: 50,
+  };
+
+  function calcularPrecioConDescuento() {
+    let total;
+    let discountOnNumber =  descuento[discounts.value];
+  
+    if (!discountOnNumber) 
+    return pResult.innerText = 'ERROR';
+  
+    total = (price * (100 - discountOnNumber)) / 100;
+  
+    return pResult.innerText = 'El precio final con descuento es: $' + total;
+  }
+```

@@ -1,24 +1,28 @@
 const btn = document.querySelector('#calcular');
 const inputPrecio = document.querySelector('#precio');
-const inputDescuento = document.querySelector('#descuento');
+const inputCupon = document.querySelector('#cupon');
 const pResult = document.querySelector('#result');
 
 btn.addEventListener('click', calcularPrecioConDescuento);
 
-function calcularPrecioConDescuento() {
-    const precio = Number(inputPrecio.value);
-    const descuento = Number(inputDescuento.value);
+const price = Number(inputPrecio.value);
+const descuento = inputCupon.value;
 
-    if (!precio || !descuento) {
-        pResult.innerText = 'ERROR! por favor llene corectamente el formulario';
-        return;
-    }
-    if (descuento > 100) {
-        pResult.innerText = 'ERROR! el descuento no puede ser mayor de un 100%';
-        return;
-    }
+const discounts = {
+    platzivacation: 10,
+    mothersday: 15,
+    independenceday: 20,
+    christmas: 50,
+  };
 
-    const precioFinal = (precio * (100 - descuento)) / 100;
-
-    pResult.innerText = 'El precio final con descuento es: $' + precioFinal;
-}
+  function calcularPrecioConDescuento() {
+    let total;
+    let discountOnNumber =  descuento[discounts.value];
+  
+    if (!discountOnNumber) 
+    return pResult.innerText = 'ERROR';
+  
+    total = (price * (100 - discountOnNumber)) / 100;
+  
+    return pResult.innerText = 'El precio final con descuento es: $' + total;
+  }
