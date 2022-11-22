@@ -6,7 +6,6 @@ const pResult = document.querySelector('#result');
 btn.addEventListener('click', calcularPrecioConDescuento);
 
 function calcularPrecioConDescuento() {
-
     const precio = Number(inputPrecio.value);
     const descuento = Number(inputDescuento.value);
 

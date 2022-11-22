@@ -57,3 +57,47 @@ y el html el for en un label ayuda a que si le das click al label te selecciona 
 <label for="precio">Precio original de tu producto:</label>
 <input id="precio" type="number" placeholder="Escribe el precio">
 ```
+
+### reto hacer cupones donde el descuento ya este establecido.
+asi se comenta en html
+```html
+   <!--  -->
+    <button id="descuento20">20% de descuento</button>
+    <button id="descuento30">30% de descuento</button>
+    <button id="descuento50">50% de descuento</button>
+```
+```js
+
+const inputPrecio = document.querySelector('#precio');
+const pResult = document.querySelector('#result');
+const primerDescuento = document.querySelector('#descuento20');
+const segundoDescuento = document.querySelector('#descuento30');
+const tercerDescuento = document.querySelector('#descuento50');
+
+primerDescuento.addEventListener('click', calcularPrimerDescuento);
+
+function calcularPrimerDescuento() {
+    const precio = Number(inputPrecio.value);
+    const precioDescuento = (precio * (100 - 20)) / 100;
+
+    pResult.innerText = 'Este es tu precio final: $' + precioDescuento;
+}
+
+segundoDescuento.addEventListener('click', calcularSegundoDescuento);
+
+function calcularSegundoDescuento() {
+    const precio = Number(inputPrecio.value);
+    const precioDescuento = (precio * (100 - 30)) / 100;
+
+    pResult.innerText = 'Este es tu precio final: $' + precioDescuento;
+}
+
+tercerDescuento.addEventListener('click', calcularTercerDescuento);
+
+function calcularTercerDescuento() {
+    const precio = Number(inputPrecio.value);
+    const precioDescuento = (precio * (100 - 50)) / 100;
+
+    pResult.innerText = 'Este es tu precio final: $' + precioDescuento;
+}
+```
