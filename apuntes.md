@@ -135,7 +135,7 @@ function calcularPrecioConDescuento() {
     pResult.innerText = 'El precio final con descuento es: $' + precioFinal;
 }
 ```
-###en esta otra forma usando un switch:
+### En esta otra forma usando un switch:
 ```js
 switch (cupon) {
         case 'Descuento_del_20%':
@@ -267,5 +267,23 @@ const cuponInArray = cuponesLista.find(isCuponInArray);
         pResult.innerText = 'ERROR! el cupón no es valido';
         return;
     }
-    ```
+ ```
     De esta forma te devuelve la primera coincidencia el primer objeto que coincida.
+
+### La formula para encontrar el promedio usando un array y un ciclo for.
+```js
+let arrayEdades = [13,13,24,45,34,34,23,23,23,23,26,28,29,27,12,12,30,17,18,20];
+
+let sumaEdades = 0;
+let promedio;
+
+function sumaPromedio () {
+    for (let i = 0; i < arrayEdades.length; i++) {
+       promedio = (sumaEdades += arrayEdades[i]) / arrayEdades.length;
+    }
+}
+
+sumaPromedio();
+console.log('El total de edad es de: ' + sumaEdades + ' años');
+console.log('El promedio de edad es de: ' + promedio + ' años');
+```
