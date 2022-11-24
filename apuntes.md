@@ -422,3 +422,35 @@ if (listaEsPar) {
 ```
 Este vez se cambian ya no tienes un index sino que directamente le pasas la posicion a tu variable.
 O puedes crear una nueva array vacia y con .push enviarle el contenido de los dos index.
+
+## Metodo .sort este metodo ordena una lista desordenada.
+```js
+function OrdenarLista(listaDesordenada) {
+    function ordenarListaSort(valorA, valorN) {
+        if (valorA > valorN) {
+            return 1;
+        } else if (valorA == valorN) {
+            return 0;
+        } else if (valorA < valorN) {
+            return -1;
+        }
+    }
+    const lista = listaDesordenada.sort(ordenarListaSort);
+    return lista;
+}
+// de esta forma es mas sencillo obtener el 1, 0, -1
+function OrdenarLista(listaDesordenada) {
+    function ordenarListaSort(valorA, valorN) {
+        return valorA - valorN;
+    }
+    const lista = listaDesordenada.sort(ordenarListaSort);
+    return lista;
+}
+```
+este metodo sort le tienes que mandarle una funcion que te devuelva un 1 si quieres que mueva el numero menor antes del numero acumulado y si son iguales o en acumulado es menor al siguiente lo deja ahi.
+"si quieres ordenar de mayor a menor la lista solo devuelveprimero -1 0 1. y de menor a mayor es 1, 0, -1.".
+### Si ya lo entiendes es importante esto.
+```js
+const lista = listaDesordenada.sort((a,b) => a-b);
+```
+esto significa que estan ordenando una lista "array" para cuando aparezca ese tipo de funciones.
