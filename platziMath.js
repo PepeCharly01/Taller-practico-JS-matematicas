@@ -31,14 +31,14 @@ PlatziMath.calcularModa = function calcularModa(lista) {
 }
 
 PlatziMath.calcularMediana = function calcularMediana(listaDesordenada) {
-    const lista = ordenarLista(listaDesordenada);
-    const listaEsPar = esPar(lista);
+    const lista = PlatziMath.ordenarLista(listaDesordenada);
+    const listaEsPar = PlatziMath.esPar(lista);
 
     if (listaEsPar) {
         const mitad1ListaPar = lista[(lista.length / 2) - 1];
         const mitad2ListaPar = lista[lista.length / 2];
         const listaMitades = [mitad1ListaPar, mitad2ListaPar];
-        const medianaListaPar = calcularPromedio(listaMitades);
+        const medianaListaPar = PlatziMath.calcularPromedio(listaMitades);
         return medianaListaPar;
         
     } else {
