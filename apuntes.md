@@ -274,12 +274,13 @@ const cuponInArray = cuponesLista.find(isCuponInArray);
 ```js
 let arrayEdades = [13,13,24,45,34,34,23,23,23,23,26,28,29,27,12,12,30,17,18,20];
 
-let sumaEdades = 0;
-let promedio;
-
 function sumaPromedio () {
+
+    let sumaEdades = 0;
+    let promedio;
+
     for (let i = 0; i < arrayEdades.length; i++) {
-       promedio = (sumaEdades += arrayEdades[i]) / arrayEdades.length;
+       promedio = (sumaEdades + arrayEdades[i]) / arrayEdades.length;
     }
 }
 
@@ -287,3 +288,137 @@ sumaPromedio();
 console.log('El total de edad es de: ' + sumaEdades + ' años');
 console.log('El promedio de edad es de: ' + promedio + ' años');
 ```
+El profesor lo resolvio asi:
+```js
+function calcularPromedio (lista) {
+
+    let sumaLista = 0;
+
+    for (let i = 0; i < lista.length; i++) {
+        sumaLista = sumaLista + lista[i];
+    }
+
+   const promedio = sumaLista / lista.length;
+    console.log('El promedio es de ' + promedio);
+    return promedio;
+}
+```
+### Metodo reduce.
+```js
+let lista = [13,13,24,45,34,34,23,23,23,23,26,28,29,27,12,12,30,17,18,20];
+
+function calcularPromedio () {
+
+    function sumarTodosElementos(valorAcumulado, nuevoValor) {
+        return valorAcumulado + nuevoValor;
+    }
+
+    const sumaLista = lista.reduce(sumarTodosElementos);
+
+    promedio = sumaLista / lista.length;
+}
+
+calcularPromedio();
+console.log('El promedio es de ' + promedio);
+```
+En esta forma ya tienes un array y lo puedes ver desde studio code. (no se porque al promedio si le pongo let o const al corrarlo me dice que no esta definido.)
+
+la forma del profesor:
+```js
+function calcularPromedio (lista) {
+
+    function sumarTodosElementos(valorAcumulado, nuevoValor) {
+        return valorAcumulado + nuevoValor;
+    }
+
+    const sumaLista = lista.reduce(sumarTodosElementos);
+    const promedio = sumaLista / lista.length;
+    console.log('El promedio es de ' + promedio);
+    return promedio;
+}
+
+// arrow function
+// const sumarTodosElementos = (valorA, nuevoV) => {
+//  return valorA + nuevoV;
+// };
+
+    // o de esta forma
+// const sumarTod = (valorA, valorN) => valorA + valorN;
+
+// const sumaLista = lista.reduce((valorA, valorN) => valorA + valorN);
+
+```
+Es importante decir que lo que hizo el ciclo for donde sumamos los valores del array el metodo reduce hace lo mismo debe recibir una función con dos parametros el valor que va acumulando y el nuevo valor.
+
+### si un numero es o no es par.
+De esta forma con las function arrows.
+```js
+const esPar = arr => arr.length % 2 ? false : true;
+
+console.log(esPar([1,2,3,4]));
+```
+# asi se calcula la mediana con JS
+```js
+function calcularPromedio (lista) {
+
+    function sumarTodosElementos(valorA, valorN) {
+        return valorA + valorN;
+    }
+
+    const sumaLista = lista.reduce(sumarTodosElementos);
+
+// const sumaLista = lista.reduce((valorA, valorN) => valorA + valorN);
+
+    const promedio = sumaLista / lista.length;
+    console.log('El promedio es de ' + promedio);
+    return promedio;
+}
+
+function esPar(lista) {
+    return !(lista.length % 2);
+}
+function esImPar(lista) {
+    return lista.length % 2;
+}
+
+function calcularMediana(lista) {
+    const listaEsPar = esPar(lista);
+
+    if (listaEsPar) {
+        const indexMitad1ListaPar = (lista.length / 2) - 1;
+        const indexMitad2ListaPar = lista.length / 2;
+        const listaMitades = [lista[indexMitad1ListaPar], lista[indexMitad2ListaPar]];
+        calcularPromedio(listaMitades)
+        
+    } else {
+        const indexMitadListaImpar = Math.floor(lista.length / 2);
+        const medianaListaImpar = lista[indexMitadListaImpar];
+        console.log(indexMitadListaImpar);
+        console.log(medianaListaImpar);
+        return medianaListaImpar;
+    }
+}
+
+console.log(calcularMediana([10,20,30]));
+console.log(calcularMediana([10,20,30,40]));
+```
+esta forma es un poco dificil de entender es la versión 1,0
+```js
+if (listaEsPar) {
+        const mitad1ListaPar = lista[(lista.length / 2) - 1];
+        const mitad2ListaPar = lista[lista.length / 2];
+        const listaMitades = [mitad1ListaPar, mitad2ListaPar];
+        calcularPromedio(listaMitades)
+    }
+        // o puede ser
+        if (listaEsPar) {
+        const indexMitad1ListaPar = (lista.length / 2) - 1;
+        const indexMitad2ListaPar = lista.length / 2;
+        const listaMitades = [];
+        listaMitades.push(lista[indexMitad1ListaPar]);
+        listaMitades.push(lista[indexMitad2ListaPar]);
+        calcularPromedio(listaMitades)
+        }
+```
+Este vez se cambian ya no tienes un index sino que directamente le pasas la posicion a tu variable.
+O puedes crear una nueva array vacia y con .push enviarle el contenido de los dos index.

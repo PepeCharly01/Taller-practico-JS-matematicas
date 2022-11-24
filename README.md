@@ -1,5 +1,6 @@
 # Taller-practico-JS-matematicas
 Es un taller para crear formulas matemáticas utilizando JavaScript
+Formulas para calcular el perimetro y area del cuadrado, rectangulo, circulo y de triángulos.
 
 # Calculadora para precios con descuento.
 Utilizando JS y las formulas que aprendimos, ahora vamos a crear una calculadora de precios con descuentos.
