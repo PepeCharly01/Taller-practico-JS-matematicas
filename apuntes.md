@@ -454,3 +454,141 @@ este metodo sort le tienes que mandarle una funcion que te devuelva un 1 si quie
 const lista = listaDesordenada.sort((a,b) => a-b);
 ```
 esto significa que estan ordenando una lista "array" para cuando aparezca ese tipo de funciones.
+
+## Moda funcion para calcular cuantas coincidencias de elementos hay en nuestra lista.
+```js
+function calcularModa(lista) {
+    const listaCount = {};
+
+    for (let i = 0; i < lista.length; i++) {
+        const elemento = lista[i];
+
+        if (listaCount[elemento]) {
+        listaCount[elemento] += 1;
+        } else {
+            listaCount[elemento] = 1;
+        }
+    }
+
+    console.log(listaCount);
+}
+calcularModa([1,2,3,4,5,1,1,3,3,3,2,2,4,4,4,5,]);
+```
+### función calcular Moda
+```js
+function calcularModa(lista) {
+    const listaCount = {};
+
+    for (let i = 0; i < lista.length; i++) {
+        const elemento = lista[i];
+
+        if (listaCount[elemento]) {
+        listaCount[elemento] += 1;
+        } else {
+            listaCount[elemento] = 1;
+        }
+    }
+
+    const listaArray = Object.entries(listaCount);
+    const listaOrdenada = ordenarListaBidemensional(listaArray, 1);
+    const listaMaxNumber = listaOrdenada[listaArray.length -1];
+    const moda = listaMaxNumber[0];
+    // console.log({listaCount, listaArray, listaOrdenada, listaMaxNumber});
+    // console.log('La moda es ' + listaMaxNumber[0]);
+    return moda;
+
+}
+console.log(calcularModa([1,2,3,4,5,1,1,3,3,3,2,2,4,4,4,5,3,3,3]));
+
+function ordenarListaBidemensional(listaDesordenada, i) {
+    function ordenarListaSort(valorA, valorN) {
+        return valorA[i] - valorN[i];
+    }
+    const lista = listaDesordenada.sort(ordenarListaSort);
+    return lista;
+}
+const listaBi2 = [['a',100], ['b',20], ['c',30],]
+```
+De esta forma ya se puede calcular la moda pero necesitas ordenar esos arrays por eso el .sort, le pasas un nueva busqueda que es "i" donde tu escribes la pocicion del array que queres buscar.
+cuando veas "listaArray.length -1" significa que buscas la ultima pocicion del array.
+tambien el "Object.entries" crea un array de arrays osea "una lista de listas" una lista Bidimencional.
+```js
+function solution(obj) {
+  const array = [];
+  const objEntries = Object.entries(obj);
+  for (let i = 0; i < objEntries.length; i++) {
+    array.push({
+      id: objEntries[i][0],
+      name: objEntries[i][1],
+    });
+  }
+  return array;
+}
+```
+es un ejercicio donde tienes que utilizar el object.entries
+
+Ahora sí, vamos paso a paso implementando el promedio ponderado en JavaScript:
+
+Definir el conjunto de números junto al peso de cada elemento
+Para esto vamos a crear un array de objetos llamado notes. Cada objeto tendrá tres valores: course con el nombre de la materia (aunque en realidad no lo utilizaremos 😅), note con la nota de la materia y credit con los créditos de la materia.
+```js
+const notes = [
+    {
+        course: "Educación Física",
+        note: 10,
+        credit: 2,
+    },
+    {
+        course: "Programación",
+        note: 8,
+        credit: 5,
+    },
+    {
+        course: "Finanzas personales",
+        note: 7,
+        credit: 5,
+    },
+];
+```
+Ahora vamos paso a paso construyendo nuestra máquina para sacar promedios ponderados.
+
+Multiplicar cada número de la lista por su peso
+Vamos a usar de nuevo el método map de los arrays. Crearemos un nuevo arreglo de solo números a partir de multiplicar cada nota con sus créditos.
+```js
+const notesWithCredit = notes.map(function (noteObject) {
+    return noteObject.note * noteObject.credit;
+});
+```
+Sumar todos los elementos del arreglo de elementos multiplicados por su peso
+Vamos a usar de nuevo el método reduce de los arrays.
+
+Crearemos una nueva variable sumOfNotesWithCredit que tenga como resultado la suma de todos los elementos del arreglo notesWithCredit. Recuerda que la función reduce recibe una función con dos parámetros: el valor acumulado (que para evitar errores debemos inicializar con 0) y el nuevo elemento de los arrays.
+```js
+const sumOfNotesWithCredit = notesWithCredit.reduce(
+    function (sum = 0, newVal) {
+        return sum + newVal;
+    }
+);
+```
+Sumar todos los pesos (créditos)
+Sí, otra vez map y reduce. Vamos a crear un nuevo arreglo credits únicamente con los créditos de cada materia y otra nueva variable sumOfCredits que recorra el arreglo credits y sume sus elementos.
+```js
+const credits = notes.map(function (noteObject) {
+    return noteObject.credit;
+});
+
+const sumOfCredits = credits.reduce(
+    function (sum = 0, newVal) {
+        return sum + newVal;
+    }
+);
+```
+Hacer la división entre ambas “sumas”
+Lo último que nos falta es dividir nuestra variable sumOfNotesWithCredit sobre la variable sumOfCredits.
+```js
+const promedioPonderadoNotasConCreditos = sumOfNotesWithCredit / sumOfCredits;
+console.log(promedioPonderadoNotasConCreditos);
+```
+En este caso, el promedio ponderado de una nota de 10 con créditos de 2, otra nota de 8 con un crédito de 5 y una última nota de 7 con créditos de 5 nos da como resultado 7.916.
+
+La media aritmética sin tener en cuenta el peso de cada nota habría sido 8.333.
