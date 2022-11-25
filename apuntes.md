@@ -592,3 +592,7 @@ console.log(promedioPonderadoNotasConCreditos);
 En este caso, el promedio ponderado de una nota de 10 con créditos de 2, otra nota de 8 con un crédito de 5 y una última nota de 7 con créditos de 5 nos da como resultado 7.916.
 
 La media aritmética sin tener en cuenta el peso de cada nota habría sido 8.333.
+
+### notas dos
+recuerda cuando isas if si quieres usar otro if, entonces al primero le tienes que poner un "return;" vacio.
+por otra parte puedes utilizar un else if y continuar con lo que quieras.
