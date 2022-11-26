@@ -596,3 +596,20 @@ La media aritmética sin tener en cuenta el peso de cada nota habría sido 8.333
 ### notas dos
 recuerda cuando isas if si quieres usar otro if, entonces al primero le tienes que poner un "return;" vacio.
 por otra parte puedes utilizar un else if y continuar con lo que quieras.
+
+## Metodo slice y splice.
+Son metodos que cortan dandoles un cantidad como limete a un arreglo que tengas si lepones 2 corta los ultimos dos, pero lo mas importante es que (splice) corta del arreglo anterior esa cantidad de elementos en cambio (slice) hace los mismo crea otro arreglo pero deja en el arreglo "hace una copia".
+```js
+function medianaTop10() {
+    const listaMedianas = salarios.map(persona => medianaPorPersona(persona.name));
+
+    const medianasOrdenadas = PlatziMath.ordenarLista(listaMedianas);
+
+    const cantidad = listaMedianas.length / 10;
+    const limite = listaMedianas.length - cantidad;
+
+    const top10 = medianasOrdenadas.splice(limite, medianasOrdenadas.length);
+
+    console.log({top10, medianasOrdenadas});
+}
+```

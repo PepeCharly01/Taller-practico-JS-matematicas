@@ -60,7 +60,7 @@ PlatziMath.calcularPromedio = function calcularPromedio (lista) {
 // const sumaLista = lista.reduce((valorA, valorN) => valorA + valorN);
 
     const promedio = sumaLista / lista.length;
-    console.log('El promedio es de ' + promedio);
+    // console.log('El promedio es de ' + promedio);
     return promedio;
 }
 
